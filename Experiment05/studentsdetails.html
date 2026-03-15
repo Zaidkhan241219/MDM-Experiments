@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Student Information Finder</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: lightgray;
+        text-align: center;
+      }
+
+      .box {
+        width: 400px;
+        margin: 60px auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 2px 2px 10px gray;
+      }
+
+      input,
+      select {
+        padding: 8px;
+        width: 85%;
+        margin-bottom: 10px;
+      }
+
+      button {
+        padding: 8px 12px;
+        background-color: steelblue;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: navy;
+      }
+
+      #result {
+        margin-top: 15px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h2>Student Information Finder</h2>
+
+      <input type="text" id="rollInput" placeholder="Enter Roll Number" /><br />
+
+      <select id="courseInput">
+        <option>Select Course</option>
+        <option>B.E Computer Engineering</option>
+        <option>B.E Information Technology</option>
+        <option>B.E Civil engineering</option>
+      </select>
+      <br />
+
+      <button id="searchBtn">Search</button>
+      <div id="result"></div>
+    </div>
+    <script>
+      $("#searchBtn").click(function () {
+        var rollNumber = $("#rollInput").val();
+        var courseName = $("#courseInput").val();
+        if (rollNumber == "" || courseName == "") {
+          $("#result").html("Please enter roll number and select course");
+          return;
+        }
+        $.ajax({
+          url: "students.json",
+          method: "GET",
+          dataType: "json",
+          success: function (data) {
+            var found = false;
+            for (var i = 0; i < data.length; i++) {
+              if (data[i].roll == rollNumber && data[i].course == courseName) {
+                $("#result").html(
+                  "Name: " +
+                    data[i].name +
+                    "<br>" +
+                    "Course: " +
+                    data[i].course,
+                );
+                found = true;
+                break;
+              }
+            }
+            if (!found) {
+              $("#result").html("Student not found");
+            }
+          },
+          error: function () {
+            $("#result").html("Error loading data");
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
