@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="mobile.xsl"?>
+
+<mobiles>
+    <mobile>
+        <brand>Samsung</brand>
+        <model>Galaxy S23</model>
+        <price>75000</price>
+        <storage>256GB</storage>
+    </mobile>
+
+    <mobile>
+        <brand>Apple</brand>
+        <model>iPhone 14</model>
+        <price>80000</price>
+        <storage>128GB</storage>
+    </mobile>
+
+    <mobile>
+        <brand>OnePlus</brand>
+        <model>OnePlus 11</model>
+        <price>60000</price>
+        <storage>256GB</storage>
+    </mobile>
+
+    <mobile>
+        <brand>Realme</brand>
+        <model>Realme GT</model>
+        <price>35000</price>
+        <storage>128GB</storage>
+    </mobile>
+</mobiles>
